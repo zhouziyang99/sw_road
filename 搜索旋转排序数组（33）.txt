@@ -1,0 +1,34 @@
+https://leetcode-cn.com/problems/search-in-rotated-sorted-array/
+
+搜索旋转排序数组（33）
+
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        lens=len(nums)
+        if (lens==0):
+            return -1    
+        index=nums.index(min(nums))
+        def bisearch(left,right):
+            while (left<=right):
+                temp=(left+right)//2
+                if (nums[temp]==target):
+                    return temp
+                elif(nums[temp]>target):
+                    right=temp-1
+                else:
+                    left=temp+1
+            return -1
+        
+        
+        if (lens==1):
+            if(nums[0]==target):
+                return 0
+            else:
+                return -1
+        if (nums[index]==target):
+            return index
+        if(index==0):
+            return bisearch(0,lens-1)
+        if (target<nums[0]):
+            return bisearch(index,lens-1)
+        return bisearch(0,index)

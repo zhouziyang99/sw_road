@@ -1,0 +1,15 @@
+https://leetcode-cn.com/problems/median-of-two-sorted-arrays/
+
+寻找两个有序数组的中位数（4）
+
+class Solution:
+    def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
+        nums3=nums1+nums2
+        nums3.sort()
+        lens=len(nums3)
+        location=int(lens/2)
+        if (lens%2==0):   
+            ans=nums3[location]+nums3[location-1]
+        if(lens%2==1):
+            ans=nums3[location]*2
+        return ans/2
