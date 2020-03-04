@@ -1,0 +1,12 @@
+https://leetcode-cn.com/problems/maximum-product-of-three-numbers/
+
+三个数的最大乘积（628）
+
+class Solution:
+    def maximumProduct(self, nums: List[int]) -> int:
+        nums.sort()
+        lens=len(nums)
+        p1=nums[0]*nums[1]*nums[lens-1]
+        p2=nums[lens-3]*nums[lens-2]*nums[lens-1]
+        ans=max(p1,p2)
+        return ans
