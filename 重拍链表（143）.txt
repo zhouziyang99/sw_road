@@ -1,0 +1,43 @@
+https://leetcode-cn.com/problems/reorder-list/
+
+重拍链表（143）
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def reorderList(self, head: ListNode) -> None:
+        """
+        Do not return anything, modify head in-place instead.
+        """
+        def middleNode(self, head: ListNode) -> ListNode:
+            p1=head
+            p2=head
+            while p1 is not None and p1.next is not None:
+                p2=p2.next
+                p1=p1.next.next
+        
+            return p2
+        def reverseList(self, head: ListNode) -> ListNode:
+            prev = None
+            while(head):
+                temp = head.next
+                head.next = prev
+                prev = head
+                head = temp
+            return prev
+
+        mid=middleNode(self,head)
+        rev=reverseList(self,mid)
+        curr = head
+        while(rev != mid):
+            temp1 = curr.next
+            curr.next = rev
+            temp2 = rev.next
+            rev.next = temp1
+            curr = temp1
+            rev = temp2
+        return head

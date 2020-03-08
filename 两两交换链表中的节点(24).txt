@@ -1,0 +1,19 @@
+https://leetcode-cn.com/problems/swap-nodes-in-pairs/
+
+两两交换链表中的节点(24)
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def swapPairs(self, head: ListNode) -> ListNode:
+        if not head or not head.next:
+            return head
+        new_node = head
+        second_node = head.next
+        new_node.next  = self.swapPairs(second_node.next)
+        second_node.next = new_node
+        return second_node
