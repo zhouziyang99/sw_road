@@ -1,0 +1,28 @@
+https://leetcode-cn.com/problems/partition-list/
+
+分隔链表（86）
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def partition(self, head: ListNode, x: int) -> ListNode:
+        before =pre1= ListNode(0)
+        after =pre2= ListNode(0)
+        while head:
+            if head.val < x:
+                before.next = head
+                before = before.next
+            else:
+                after.next = head
+                after = after.next
+            head = head.next
+        
+        
+        after.next = None
+        before.next = pre2.next
+
+        return pre1.next
