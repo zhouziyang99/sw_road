@@ -1,0 +1,32 @@
+https://leetcode-cn.com/problems/linked-list-cycle-ii/
+
+环形链表2（142）
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def find(self,head):
+        fast=slow=head
+        while fast and fast.next:
+            fast=fast.next.next
+            slow=slow.next
+            if fast==slow:
+                return slow
+        return None
+    def detectCycle(self, head: ListNode) -> ListNode:
+        if not head:
+            return None
+        
+        mid=self.find(head)
+        if mid is None:
+            return None
+        pre2=head
+        pre3=mid
+        while pre2!=pre3:
+            pre2=pre2.next
+            pre3=pre3.next
+        return pre2
