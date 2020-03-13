@@ -1,0 +1,18 @@
+https://leetcode-cn.com/problems/valid-parentheses/
+
+有效的括号（20）
+
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack = []
+        judge = {'()','[]','{}'}
+        for i in s:
+            if not stack: 
+                stack.append(i)
+            else:
+                if stack[-1]+i in judge:
+                    stack.pop()
+                else:
+                    stack.append(i)
+                    
+        return stack == []
