@@ -1,0 +1,14 @@
+https://leetcode-cn.com/problems/remove-all-adjacent-duplicates-in-string/
+
+删除字符串中的所有相邻重复项(1047)
+
+class Solution:
+    def removeDuplicates(self, S: str) -> str:
+        stack=[]
+        for s in S:
+            if stack and stack[-1]==s:
+                stack.pop()
+            else:
+                stack.append(s)
+            
+        return ''.join(stack)

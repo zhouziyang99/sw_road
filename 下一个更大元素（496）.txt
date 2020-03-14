@@ -1,0 +1,40 @@
+https://leetcode-cn.com/problems/next-greater-element-i/
+
+下一个更大元素（496）
+
+方法一：
+
+class Solution:
+    def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        dic = {}
+        result = []
+        stack = []
+        for i in range(len(nums2)):
+            dic[nums2[i]] = i
+        for i in nums1:
+            stack.append(i)
+            for j in nums2[dic[i]:]:
+                if j > i:
+                    result.append(j)
+                    stack.pop
+                    break
+                elif j == nums2[-1]:
+                    result.append(-1)
+        return result
+
+方法二：
+
+class Solution:
+    def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        lens1=len(nums1)
+        list3=[-1]*lens1
+        lens2=len(nums2)
+        for j in range(lens1):
+            index=nums2.index(nums1[j])
+            for i in range(index,lens2):
+                if nums2[i]>nums1[j]:
+                    list3[j]=nums2[i]
+                    break
+        return list3
+
+            
