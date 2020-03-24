@@ -1,0 +1,23 @@
+https://leetcode-cn.com/problems/minimum-domino-rotations-for-equal-row/
+
+行相等的最少多米诺旋转(1007)
+
+class Solution:
+    def minDominoRotations(self, A: List[int], B: List[int]) -> int:
+        def count(x):
+            a=b=0
+            for i in range(n):
+                if A[i] != x and B[i] != x:
+                    return -1
+                elif A[i] != x:
+                    a += 1    
+                elif B[i] != x:
+                    b += 1
+            return min(a,b)
+    
+        n = len(A)
+        ans = count(A[0]) 
+        if ans != -1 or A[0] == B[0]:
+            return ans 
+        else:
+            return count(B[0])
