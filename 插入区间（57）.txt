@@ -1,0 +1,16 @@
+https://leetcode-cn.com/problems/insert-interval/
+
+插入区间（57）
+
+典型的投机取巧（利用了56题）：
+class Solution:
+    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+        intervals.append(newInterval)
+        res = []
+        intervals.sort()
+        for i in intervals:
+            if not res or res[-1][1] < i[0]:
+                res.append(i)
+            else:
+                res[-1][1] = max(i[1],res[-1][1])
+        return res

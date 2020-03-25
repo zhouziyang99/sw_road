@@ -1,0 +1,30 @@
+https://leetcode-cn.com/problems/capacity-to-ship-packages-within-d-days/
+
+在 D 天内送达包裹的能力（1011）
+
+class Solution:
+    def check(self,boat,weights,D):
+        W=0
+        if boat<max(weights):
+            return False
+        if boat*D<sum(weights):
+            return False
+        for i in range(len(weights)):
+            if W+weights[i]>boat:
+                D-=1
+                W=0
+                if D == 0:
+                    return False
+            W += weights[i]
+        return True
+            
+    def shipWithinDays(self, weights: List[int], D: int) -> int:
+        l, r, ans = sum(weights)//D, sum(weights), 0
+        while l <= r:
+            m = l + (r-l) // 2
+            if self.check(m, weights, D):
+                ans = m
+                r = m-1
+            else:
+                l = m+1
+        return ans

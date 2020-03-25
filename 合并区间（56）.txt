@@ -1,0 +1,16 @@
+https://leetcode-cn.com/problems/merge-intervals/
+
+合并区间（56）
+
+class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        res = []
+        intervals=sorted(intervals)
+        
+        for i in intervals:
+            return i
+            if not res or res[-1][1] < i[0]:
+                res.append(i)
+            else:
+                res[-1][1] = max(i[1],res[-1][1])
+        return res
