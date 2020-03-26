@@ -1,0 +1,26 @@
+https://leetcode-cn.com/problems/rle-iterator/
+
+900. RLE 迭代器
+
+class RLEIterator:
+
+    def __init__(self, A: List[int]):
+        self.A=A
+        self.i=self.j=0
+
+    def next(self, n: int) -> int:
+        while self.i<len(self.A):
+            if n>self.A[self.i]-self.j:
+                n-=self.A[self.i]-self.j
+                self.j=0
+                self.i+=2
+            else:
+                self.j+=n
+                return self.A[self.i+1]
+        return -1
+        
+
+
+# Your RLEIterator object will be instantiated and called as such:
+# obj = RLEIterator(A)
+# param_1 = obj.next(n)

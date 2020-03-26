@@ -1,0 +1,16 @@
+https://leetcode-cn.com/problems/image-overlap/
+
+835. 图像重叠
+
+class Solution:
+    def largestOverlap(self, A: List[List[int]], B: List[List[int]]) -> int:
+        lens,ol = len(A), 0
+        for i in range(lens):
+            for j in range(lens):
+                tmp1, tmp2 = 0, 0
+                for m in range(lens-i):
+                    for n in range(lens-j):
+                        tmp1 += A[m][n]*B[m+i][n+j]
+                        tmp2 += B[m][n]*A[m+i][n+j]
+                ol = max(ol, tmp1, tmp2)
+        return ol
