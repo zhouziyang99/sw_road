@@ -1,0 +1,21 @@
+https://leetcode-cn.com/problems/maximum-sum-of-two-non-overlapping-subarrays/
+
+1031. 两个非重叠子数组的最大和
+
+class Solution:
+    def maxSumTwoNoOverlap(self, A: List[int], L: int, M: int) -> int:
+        resL=0
+        resLM=0
+        for i in range(len(A)-L-M+1):
+            resL=max(resL,sum(A[i:i+L]))
+            resLM=max(resLM,resL+sum(A[i+L:i+L+M]))
+
+            
+        resM=0
+        resML=0
+        for i in range(len(A)-L-M+1):
+            resM=max(resM,sum(A[i:i+M]))
+            resML=max(resML,resM+sum(A[i+M:i+L+M]))
+
+        res=max(resLM,resML)
+        return res

@@ -1,0 +1,38 @@
+https://leetcode-cn.com/problems/longest-consecutive-sequence/
+
+128. 最长连续序列
+
+方法一（抄的）：
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        if not nums:
+            return 0
+        nums.sort()
+
+        longest_streak = 1
+        current_streak = 1
+
+        for i in range(1, len(nums)):
+            if nums[i] != nums[i-1]:
+                if nums[i] == nums[i-1]+1:
+                    current_streak += 1
+                else:
+                    longest_streak = max(longest_streak, current_streak)
+                    current_streak = 1
+
+        return max(longest_streak, current_streak)
+
+方法二：
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        nums = set(nums)
+        res = 0
+        for num in nums:
+        	# 判断是否是第一个数字
+            if num - 1 not in nums:
+                tmp = 1
+                while num + 1 in nums:
+                    num += 1
+                    tmp += 1
+                res = max(res, tmp)
+        return res
