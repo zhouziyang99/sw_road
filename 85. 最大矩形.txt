@@ -1,0 +1,32 @@
+https://leetcode-cn.com/problems/maximal-rectangle/
+
+85. 最大矩形
+
+class Solution:
+    def max_row(self,heights):
+        stack = [-1]
+
+        maxarea = 0
+        for i in range(len(heights)):
+
+            while stack[-1] != -1 and heights[stack[-1]] >= heights[i]:
+                maxarea = max(maxarea, heights[stack.pop()] * (i - stack[-1] - 1))
+            stack.append(i)
+
+        while stack[-1] != -1:
+            maxarea = max(maxarea, heights[stack.pop()] * (len(heights) - stack[-1] - 1))
+        return maxarea
+
+    def maximalRectangle(self, matrix: List[List[str]]) -> int:
+        if not matrix:
+            return 0
+        ans=0
+        p=[0]*len(matrix[0])
+        for i in range(len(matrix)):
+            for j in range(len(matrix[0])):
+                if matrix[i][j]=='1':
+                    p[j]=p[j]+1
+                else:
+                    p[j]=0
+            ans=max(ans,self.max_row(p))
+        return ans
