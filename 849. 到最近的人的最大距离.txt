@@ -1,0 +1,23 @@
+https://leetcode-cn.com/problems/maximize-distance-to-closest-person/
+
+849. 到最近的人的最大距离
+
+class Solution:
+    def maxDistToClosest(self, seats: List[int]) -> int:
+        lens=len(seats)
+        dist1=[20000]*lens
+        dist2=[20000]*lens
+        for i in range(lens):
+            if seats[i]==1:
+                dist1[i]=0
+            elif i>0:
+                dist1[i]=dist1[i-1]+1
+        for j in range(lens-1,-1,-1):
+            if seats[j]==1:
+                dist2[j]=0
+            elif j<lens-1:
+                dist2[j]=dist2[j+1]+1
+        for i in range(lens):
+            dist1[i]=min(dist1[i],dist2[i])
+        return max(dist1)
+        

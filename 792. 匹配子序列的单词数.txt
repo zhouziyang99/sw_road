@@ -1,0 +1,20 @@
+https://leetcode-cn.com/problems/number-of-matching-subsequences/
+
+792. 匹配子序列的单词数
+
+class Solution:
+    def numMatchingSubseq(self, S: str, words: List[str]) -> int:
+        wait = collections.defaultdict(list)
+        for word in words:
+            wait[word[0]].append(word[1:])
+        ans = 0
+        for c in S:
+            if c in wait:
+                temp = wait[c]
+                del wait[c]
+                for short_word in temp:
+                    if short_word!='':
+                        wait[short_word[0]].append(short_word[1:])
+                    else:
+                        ans+=1
+        return ans
