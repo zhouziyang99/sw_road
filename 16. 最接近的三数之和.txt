@@ -1,0 +1,27 @@
+https://leetcode-cn.com/problems/3sum-closest/
+
+16. 最接近的三数之和
+
+class Solution:
+    def threeSumClosest(self, nums: List[int], target: int) -> int:
+        lens=len(nums)
+        nums.sort()
+        ans1=10000
+        ans2=10000
+        for i in range(lens-2):
+            l=i+1
+            r=lens-1
+            while l<r:
+                sum=nums[i]+nums[l]+nums[r]
+                if sum==target:
+                    return target
+                elif sum>target:
+                    r-=1
+                    ans1=min(ans1,sum-target)
+                else:
+                    l+=1
+                    ans2=min(ans2,target-sum)
+        if ans1>ans2:
+            return target-ans2
+        else:
+            return target+ans1
