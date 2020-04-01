@@ -1,0 +1,14 @@
+https://leetcode-cn.com/problems/max-chunks-to-make-sorted/
+
+769. 最多能完成排序的块
+
+class Solution:
+    def maxChunksToSorted(self, arr: List[int]) -> int:
+        lens=len(arr)
+        count=0
+        M=0
+        for i in range(lens):
+            M=max(M,arr[i])
+            if M==i:
+                count+=1
+        return count

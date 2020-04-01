@@ -1,0 +1,19 @@
+https://leetcode-cn.com/problems/minimum-size-subarray-sum/
+
+209. 长度最小的子数组
+
+class Solution:
+    def minSubArrayLen(self, s: int, nums: List[int]) -> int:
+        if sum(nums)<s:
+            return 0
+        lens=len(nums)
+        po=lens
+        sum1=0
+        l=0
+        for i in range(lens):
+            sum1+=nums[i]
+            while sum1>=s:
+                po=min(po,i+1-l)
+                sum1-=nums[l]
+                l+=1
+        return po
