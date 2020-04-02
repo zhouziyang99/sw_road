@@ -1,0 +1,12 @@
+https://leetcode-cn.com/problems/jump-game/
+
+55. 跳跃游戏
+
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        dist=0
+        for i in range(len(nums)):
+            if dist<i:
+                return False
+            dist=max(dist,i+nums[i])
+        return True

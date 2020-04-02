@@ -1,0 +1,13 @@
+https://leetcode-cn.com/problems/flip-string-to-monotone-increasing/
+
+926. 将字符串翻转到单调递增
+
+class Solution:
+    def minFlipsMonoIncr(self, S: str) -> int:
+        p=[0]
+        for s in S:
+            p.append(p[-1]+int(s))
+        ans=len(p)
+        for j in range(len(p)):
+            ans=min(ans,(p[j] + len(S)-j-(p[-1]-p[j])))
+        return ans

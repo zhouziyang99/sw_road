@@ -1,0 +1,18 @@
+https://leetcode-cn.com/problems/valid-mountain-array/
+
+941. 有效的山脉数组
+
+class Solution:
+    def validMountainArray(self, A: List[int]) -> bool:
+        if not A:
+            return False
+        i=A.index(max(A))
+        if i==0 or i==len(A)-1:
+            return False
+        for j in range(i):
+            if A[j]>=A[j+1]:
+                return False
+        for j in range(i,len(A)-1):
+            if A[j]<=A[j+1]:
+                return False
+        return True
