@@ -1,0 +1,17 @@
+https://leetcode-cn.com/problems/jump-game-ii/
+
+45. 跳跃游戏 II
+
+class Solution:
+    def jump(self, nums: List[int]) -> int:
+            count=0
+            start=0
+            end=1
+            while end<len(nums):
+                pos=0
+                for i in range(start,end):
+                    pos=max(pos,nums[i]+i) 
+                start=end
+                end=pos+1
+                count+=1
+            return count
