@@ -1,0 +1,43 @@
+https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/
+
+714. 买卖股票的最佳时机含手续费
+
+方法一（dp）：
+class Solution:
+    def maxProfit(self, prices: List[int], fee: int) -> int:
+        lens = len(prices)
+
+        if lens < 2:
+            return 0
+
+        dp = [[0, 0] for _ in range(lens)]
+        dp[0][0] = 0
+        dp[0][1] = -prices[0]-fee
+
+        for i in range(1, lens):
+            dp[i][0] = max(dp[i - 1][0], dp[i - 1][1] + prices[i])
+            dp[i][1] = max(dp[i - 1][1], dp[i - 1][0] - prices[i] - fee)
+        return dp[-1][0]
+
+方法二：
+class Solution:
+    def maxProfit(self, prices: List[int], fee: int) -> int:
+        if len(prices) < 2:
+            return 0
+        profit = 0
+        buy = sold = prices[0]
+        for price in prices[1:]:
+            if price >= sold:
+                sold = price
+
+            else:
+                gain = sold - buy - fee
+
+                if gain > 0 and gain > price - buy:
+                    profit += gain
+                    buy = sold = price
+                elif price < buy:
+                    buy = sold = price
+        if sold - buy > fee:
+            profit += sold - buy - fee
+        return profit
