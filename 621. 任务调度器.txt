@@ -1,0 +1,11 @@
+https://leetcode-cn.com/problems/task-scheduler/
+
+621. 任务调度器
+
+class Solution:
+    def leastInterval(self, tasks: List[str], n: int) -> int:
+        tnum=[]
+        for i in set(tasks):
+            tnum.append(tasks.count(i))
+        maxt=max(tnum)
+        return max((n+1)*(maxt-1)+tnum.count(maxt),len(tasks))
