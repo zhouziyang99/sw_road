@@ -1,0 +1,20 @@
+https://leetcode-cn.com/problems/plus-one/
+
+66. 加一
+
+class Solution:
+    def plusOne(self, digits: List[int]) -> List[int]:
+        temp=0
+        lens=len(digits)
+        digits=digits[::-1]
+        for i in range(lens):
+            if digits[i]==9:
+                digits[i]=0
+                temp=1
+            else:
+                digits[i]+=1
+                temp=0
+                break
+        if temp:
+            digits.append(1)
+        return digits[::-1]
