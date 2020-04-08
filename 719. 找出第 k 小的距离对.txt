@@ -1,0 +1,24 @@
+https://leetcode-cn.com/problems/find-k-th-smallest-pair-distance/\\
+
+719. 找出第 k 小的距离对
+
+class Solution:
+    def isposs(self,nums,dis,k):
+        left=0
+        count=0
+        for i in range(len(nums)):
+            while nums[i]-nums[left]>dis:
+                left+=1
+            count += i-left
+        return count>=k
+    def smallestDistancePair(self, nums: List[int], k: int) -> int:
+        nums.sort()
+        low=0
+        high=nums[-1]-nums[0]
+        while high>low:
+            mid=(high+low)//2
+            if self.isposs(nums,mid,k):
+                high=mid
+            else:
+                low=mid+1
+        return low
