@@ -1,0 +1,21 @@
+https://leetcode-cn.com/problems/combination-sum/
+
+39. 组合总和
+
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        candidates.sort()
+        result = []
+        def dfs(temp,res):
+            nonlocal target
+            if temp > target:
+                return
+            if temp == target:
+                result.append(res[:])
+                return
+            for i in candidates:
+                if res and res[-1] > i:
+                    continue
+                dfs(temp + i, res + [i])
+        dfs(0, [])
+        return result

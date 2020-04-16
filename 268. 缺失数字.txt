@@ -1,0 +1,9 @@
+https://leetcode-cn.com/problems/missing-number/
+
+268. 缺失数字
+
+class Solution:
+    def missingNumber(self, nums: List[int]) -> int:
+        lens=len(nums)
+        ans=lens*(lens+1)/2-sum(nums)
+        return int(ans)
