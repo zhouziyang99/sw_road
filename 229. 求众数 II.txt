@@ -1,0 +1,51 @@
+https://leetcode-cn.com/problems/majority-element-ii/
+
+229. 求众数 II
+
+class Solution:
+    def majorityElement(self, nums: List[int]) -> List[int]:
+        lens = len(nums)
+        
+        if lens==1:
+            return nums
+        if lens==2:
+            if nums[0]!=nums[1]:
+                return nums
+            return [nums[0]]
+        
+        count0 = 0
+        count1 = 0
+        cond0 = None
+        cond1 = None
+        num0 = 0
+        num1 = 0
+        
+        
+        for i in nums:
+            if i!=cond1 and count0==0:
+                cond0 = i
+                count0=1
+                continue
+            if i!=cond0 and count1==0:
+                cond1 = i
+                count1 = 1
+                continue   
+            if i==cond0:
+                count0+=1
+            elif i==cond1:
+                count1+=1
+            else:
+                count0-=1
+                count1-=1    
+        for i in nums:
+            if i==cond0:
+                num0+=1
+            if i==cond1:
+                num1+=1
+        p = []
+        if num0>lens/3:
+            p.append(cond0)
+        if cond0!=cond1 and num1>lens/3:
+            p.append(cond1)
+            
+        return p

@@ -1,0 +1,19 @@
+https://leetcode-cn.com/problems/longest-continuous-increasing-subsequence/
+
+674. 最长连续递增序列
+
+class Solution:
+    def findLengthOfLCIS(self, nums: List[int]) -> int:
+        if not nums:
+            return 0
+        left=0
+        right=0
+        ans=1
+        for i in range (len(nums)-1):
+            if nums[i]<nums[i+1]:
+                right=i+1
+                ans=max(ans,right-left+1)
+            else:
+                left=i+1
+                right=i+1
+        return ans
