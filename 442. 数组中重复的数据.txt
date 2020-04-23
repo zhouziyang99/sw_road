@@ -1,0 +1,13 @@
+https://leetcode-cn.com/problems/find-all-duplicates-in-an-array/
+
+442. 数组中重复的数据
+
+class Solution:
+    def findDuplicates(self, nums: List[int]) -> List[int]:
+        res = []
+        for i in range(len(nums)):
+            loc = abs(nums[i]) - 1
+            if nums[loc] < 0:
+                res.append(loc + 1)
+            nums[loc] = -nums[loc]
+        return res
