@@ -1,0 +1,37 @@
+https://leetcode-cn.com/problems/binary-tree-coloring-game/
+
+1145. 二叉树着色游戏
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def getNodeNum(self, root: TreeNode):
+        if root is None:
+            return 0
+        return self.getNodeNum(root.left) + self.getNodeNum(root.right) + 1
+
+    def getNode(self, root: TreeNode, x: int):
+        if root is None:
+            return None
+
+        if root.val == x:
+            return root
+
+        ret = self.getNode(root.left, x)
+        return ret if ret is not None else self.getNode(root.right, x)
+
+    def btreeGameWinningMove(self, root: TreeNode, n: int, x: int) -> bool:
+        red_root=self.getNode(root,x)
+
+        left = self.getNodeNum(red_root.left)
+        right=self.getNodeNum(red_root.right)
+        parent = n-left-right-1
+        if left > int(n/2) or right > int(n/2) or parent > int(n/2):
+            return True
+        else:
+            return False
